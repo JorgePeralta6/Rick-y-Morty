@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { reqCharacters } from "../service/characters";
 
-export const useCharacters = (pagina) => {
+export const useCharacters = (pagina, buscarPersonaje) => {
     const [characters, setCharacters] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
-        reqCharacters(pagina).then((data) => {
+        reqCharacters(pagina, buscarPersonaje).then((data) => {
             setCharacters(data.results);
             setTotalPages(data.info.pages); 
         });
-    }, [pagina]);
+    }, [pagina, buscarPersonaje]);
 
     return {
         characters,
